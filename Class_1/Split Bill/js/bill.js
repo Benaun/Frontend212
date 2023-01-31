@@ -7,8 +7,10 @@ export default class Bill {
 
   /** @param {string} amountStr */
   addAmount(amountStr) {
-		this.amounts.push(amount);
-    return this.amount;
+		const amountNum = Number.parseInt(amountStr, 10);
+
+    this.amounts.push(amountNum);
+    return this.amounts;
   }
 	
 	getCount(){
@@ -16,16 +18,10 @@ export default class Bill {
   }
 
   getTotal(){
-    const result = this.amounts.reduce(function(total, current){
-      return total + current
-    }, 0);
-    return result;
+    return this.amounts.reduce((current, total) => current + total);
   }
 
   getAverage(){
-    const result = this.amounts.reduce(function(total, current){
-      return total + current
-    }, 0);
-    return result / this.amounts.length;
+    return this.getTotal() / this.getCount();
   }
 }
